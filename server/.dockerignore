@@ -1,6 +1,0 @@
-node_modules/
-.vscode/
-dist/
-build/
-.husky/_/
-.DS_Store

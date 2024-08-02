@@ -1,11 +1,23 @@
+import {getChatGptResponse} from '../services/chatGptService';
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const resolvers: any[] = [
     {
-    Query: {
-      // eslint-disable-next-line
-      hello: (_: any, { name }: { name: string }) => `Hello ${name}!`,
+        Query: {
+            // eslint-disable-next-line
+            translate: async (_: any, {text}: {text: string}) => {
+                const prompt = `Translate this text to english: ${text}`;
+                const chatGptResponse = await getChatGptResponse(prompt);
+                return chatGptResponse;
+            },
+            // eslint-disable-next-line
+            rephrase: async (_: any, {text}: {text: string}) => {
+                const prompt = `Rephrase content to make it sound more professional: ${text}`;
+                const chatGptResponse = await getChatGptResponse(prompt);
+                return chatGptResponse;
+            },
+        },
     },
-  }
 ];
 
 export default resolvers;

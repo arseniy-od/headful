@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React, {ChangeEventHandler, ReactNode} from 'react';
 
 interface AIInputChildrenInputBase {
@@ -53,8 +54,23 @@ export function AIInput<TInput extends AIInputChildrenInputBase>({
     const onButtonClick = async (promptKey: PromptKey) => {
         const handler = prompts[promptKey].handler;
         const modifiedText = await handler(value);
-
         onChange({target: {value: modifiedText}} as any);
+        const queryData = {
+            query: `query sayHello($name: String) {
+				hello(name: $name)
+			}`,
+            variables: {name: 'world'},
+        };
+
+        try {
+            const response = await axios.post(
+                process.env.REACT_APP_GRAPHQL_URL as string,
+                queryData,
+            );
+            console.log(response.data.data.hello);
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     return (

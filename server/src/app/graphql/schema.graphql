@@ -1,4 +1,5 @@
 # A placeholder is required...
 type Query {
-  hello(name: String): String!
+  translate(text: String): String!
+  rephrase(text: String): String!
 }
