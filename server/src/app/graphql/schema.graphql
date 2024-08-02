@@ -2,4 +2,5 @@
 type Query {
   translate(text: String): String!
   rephrase(text: String): String!
+  summarize(text: String): String!
 }
