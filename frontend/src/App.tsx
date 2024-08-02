@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {ChangeEventHandler, useState} from 'react';
+import ReactDOM from 'react-dom';
+import {AIInput} from './components/AIInput/AIInput';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+type TInput = {value: string};
+
+const App: React.FC = () => {
+    const [value, setValue] = useState('');
+
+    const onChange: ChangeEventHandler<TInput> = ev => {
+        setValue(ev.target.value);
+    };
+    return (
+        <div className="h-screen w-screen bg-slate-100">
+            <section>
+                <h2>Input</h2>
+                {/* <InputShowcase inputTag={'input'} /> */}
+                <AIInput
+                    onChange={onChange}
+                    value={value}
+                    enabledPrompts={['translate', 'rephrase']}>
+                    {({onChange, value}) => (
+                        <input
+                            className="border-2 border-black"
+                            onChange={onChange}
+                            value={value}
+                        />
+                    )}
+                </AIInput>
+            </section>
+            <section>
+                <h2>TextArea</h2>
+                {/* <InputShowcase inputTag={'textarea'} /> */}
+            </section>
+        </div>
+    );
+};
 
 export default App;
