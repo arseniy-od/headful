@@ -13,7 +13,6 @@ export const getChatGptResponse = async (prompt: string): Promise<string> => {
             },
         });
 
-        // Assuming the response from ChatGPT is in apiResponse.data.choices[0].text
         console.log('response:', response.data.choices[0].message.content);
 
         const chatGptResponse = response.data.choices[0].message.content;

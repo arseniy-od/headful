@@ -31,7 +31,7 @@ const handleModify = async (text: string, graphQlResolver: PromptKey) => {
     return modifiedText;
 };
 
-type PromptKey = 'translate' | 'rephrase' | 'summarize'; // Have to be same as graphQl resolvers at the backend
+type PromptKey = 'translate' | 'rephrase' | 'summarize'; // Must be the same as graphQl resolvers on the backend. Would be a great idea to introduce some types that connect frontend and backend
 
 const prompts: {
     [key in PromptKey]: {
@@ -71,12 +71,13 @@ const DefaultButton: React.FC<CustomButtonProps> = ({
 );
 
 interface AIInputProps<TInput extends AIInputChildrenInputBase> {
-    children: (props: AIInputChildrenProps<TInput>) => ReactNode;
+    children: ReactNode;
     onChange: ChangeEventHandler<TInput>;
     value: TInput['value'];
     enabledPrompts: PromptKey[];
-    buttonComponent?: React.ComponentType<CustomButtonProps>; // Custom button component
-    buttonClassName?: string; // Custom button class name
+    buttonComponent?: React.ComponentType<CustomButtonProps>;
+    buttonClassName?: string;
+    className?: string;
 }
 
 export function AIInput<TInput extends AIInputChildrenInputBase>({
@@ -84,8 +85,9 @@ export function AIInput<TInput extends AIInputChildrenInputBase>({
     onChange,
     value,
     enabledPrompts,
-    buttonComponent: ButtonComponent = DefaultButton, // Default to CustomButton
+    buttonComponent: ButtonComponent = DefaultButton,
     buttonClassName,
+    className,
 }: AIInputProps<TInput>) {
     const onButtonClick = async (promptKey: PromptKey) => {
         const modifiedText = await handleModify(value, promptKey);
@@ -93,8 +95,8 @@ export function AIInput<TInput extends AIInputChildrenInputBase>({
     };
 
     return (
-        <div>
-            {children({onChange, value})}
+        <div className={className}>
+            {children}
             <div>
                 {enabledPrompts.map(promptKey => (
                     <ButtonComponent

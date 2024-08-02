@@ -6,7 +6,7 @@ const resolvers: any[] = [
         Query: {
             // eslint-disable-next-line
             translate: async (_: any, {text}: {text: string}) => {
-                const prompt = `Translate this text to english: ${text}`;
+                const prompt = `Translate this text to english. Write only translated text: ${text}`;
                 const chatGptResponse = await getChatGptResponse(prompt);
                 return chatGptResponse;
             },

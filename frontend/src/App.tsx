@@ -33,29 +33,26 @@ const App: React.FC = () => {
                 Example application for AIInput HOC
             </h2>
             <div className="flex justify-center pt-20">
-                {/* <h2>Input</h2> */}
                 <AIInput
                     onChange={onInputChange}
                     value={inputValue}
                     enabledPrompts={['translate', 'rephrase']}
                     buttonComponent={MyCustomButton}>
-                    {({onChange, value}) => (
-                        <div className="w-full sm:w-[34rem] md:w-[48rem]">
-                            <label
-                                htmlFor="input_test"
-                                className="block mb-2 font-medium text-gray-900 text-xl">
-                                Input
-                            </label>
-                            <input
-                                type="text"
-                                id="input_test"
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                placeholder="Your prompt"
-                                onChange={onChange}
-                                value={value}
-                            />
-                        </div>
-                    )}
+                    <div className="w-full sm:w-[34rem] md:w-[48rem]">
+                        <label
+                            htmlFor="input_test"
+                            className="block mb-2 font-medium text-gray-900 text-xl">
+                            Input
+                        </label>
+                        <input
+                            type="text"
+                            id="input_test"
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            placeholder="Your prompt"
+                            onChange={onInputChange}
+                            value={inputValue}
+                        />
+                    </div>
                 </AIInput>
             </div>
             <div className="flex justify-center pt-20 mb-10">
@@ -63,23 +60,21 @@ const App: React.FC = () => {
                     onChange={onTextareaChange}
                     value={textareaValue}
                     enabledPrompts={['rephrase', 'translate', 'summarize']}>
-                    {({onChange, value}) => (
-                        <div className="w-full sm:w-[34rem] md:w-[48rem]">
-                            <label
-                                htmlFor="input_test"
-                                className="block mb-2 font-medium text-gray-900 text-xl">
-                                Textarea
-                            </label>
-                            <textarea
-                                id="input_test"
-                                rows={4}
-                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                placeholder="Your prompt"
-                                onChange={onChange}
-                                value={value}
-                            />
-                        </div>
-                    )}
+                    <div className="w-full sm:w-[34rem] md:w-[48rem]">
+                        <label
+                            htmlFor="input_test"
+                            className="block mb-2 font-medium text-gray-900 text-xl">
+                            Textarea
+                        </label>
+                        <textarea
+                            id="input_test"
+                            rows={10}
+                            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                            placeholder="Your prompt"
+                            onChange={onTextareaChange}
+                            value={textareaValue}
+                        />
+                    </div>
                 </AIInput>
             </div>
         </div>
